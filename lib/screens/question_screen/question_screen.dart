@@ -6,6 +6,7 @@ import 'package:quiz/constants/text_app.dart';
 import 'package:quiz/models/question_model/question_model.dart';
 import 'package:quiz/screens/result_screen/result_screen.dart';
 import 'package:quiz/widgets/app_bars/custom_app_bar.dart';
+import 'package:quiz/widgets/buttons/custom_button.dart';
 
 class QuestionScreen extends StatefulWidget {
   static const String routeName = '/question_screen';
@@ -23,7 +24,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
     super.initState();
   }
 
-  final sampleQuestions = [
+  final List<QuestionModel> sampleQuestions = [
     QuestionModel(
       text: "Скільки буде 2 + 2 ?",
       options: ["3", "4", "5"],
@@ -54,39 +55,40 @@ class _QuestionScreenState extends State<QuestionScreen> {
           backgroundColor: ColorsApp.backgroundColor,
           appBar: CustomAppBar(name: TextApp.questions),
           body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  currentQuestion.text,
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 20),
-
-                for (String option in currentQuestion.options)
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-
-                    onPressed: () {
-                      context.read<QuestionCubit>().selectAnswer(option);
-                    },
-                    child: Text(
-                      option,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.0,
-                      ),
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 500),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0.0, 1.0),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: FadeTransition(opacity: animation, child: child),
+                );
+              },
+              child: Column(
+                key: ValueKey(currentQuestion.text),
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    currentQuestion.text,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-              ],
+                  const SizedBox(height: 20),
+
+                  for (String option in currentQuestion.options)
+                    CustomButton(
+                      name: option,
+                      onPressed: () {
+                        context.read<QuestionCubit>().selectAnswer(option);
+                      },
+                    ),
+                ],
+              ),
             ),
           ),
         );
