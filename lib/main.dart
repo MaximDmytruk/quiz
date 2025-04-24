@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/screens/question_screen/question_screen.dart';
 import 'package:quiz/screens/welcome_screen/welcome_screen.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       home: WelcomeScreen(),
       initialRoute: WelcomeScreen.routeName,
-      routes: {},
+      routes: {QuestionScreen.routeName: (context) => QuestionScreen()},
     );
   }
 }

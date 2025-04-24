@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/constants/colors_app.dart';
 import 'package:quiz/constants/text_app.dart';
+import 'package:quiz/screens/question_screen/question_screen.dart';
 import 'package:quiz/screens/welcome_screen/widgets/custom_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -94,7 +95,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     super.dispose();
   }
 
-  void startAction() {}
+  void startAction() =>
+      Navigator.of(context).pushNamed(QuestionScreen.routeName);
 
   @override
   Widget build(BuildContext context) {
