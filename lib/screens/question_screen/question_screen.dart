@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz/blocs/question_cubit/question_cubit.dart';
 import 'package:quiz/constants/colors_app.dart';
+import 'package:quiz/constants/questions_list.dart';
 import 'package:quiz/constants/text_app.dart';
 import 'package:quiz/models/question_model/question_model.dart';
 import 'package:quiz/screens/question_screen/widgets/question_column.dart';
@@ -21,27 +22,11 @@ class QuestionScreen extends StatefulWidget {
 class _QuestionScreenState extends State<QuestionScreen> {
   @override
   void initState() {
-    context.read<QuestionCubit>().loadQuestions(sampleQuestions);
+    context.read<QuestionCubit>().loadQuestions(questionsList);
     super.initState();
   }
 
-  final List<QuestionModel> sampleQuestions = [
-    QuestionModel(
-      text: "Скільки буде 2 + 2 ?",
-      options: ["3", "4", "5"],
-      correctAnswer: "4",
-    ),
-    QuestionModel(
-      text: "Яка столиця України?",
-      options: ["Львів", "Київ", "Харків"],
-      correctAnswer: "Київ",
-    ),
-    QuestionModel(
-      text: "Скільки континентів на Землі?",
-      options: ["5", "6", "7"],
-      correctAnswer: "7",
-    ),
-  ];
+  
 
   @override
   Widget build(BuildContext context) {
