@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quiz/bloc/question_cubit/question_cubit.dart';
 import 'package:quiz/screens/question_screen/question_screen.dart';
 import 'package:quiz/screens/welcome_screen/welcome_screen.dart';
 
@@ -11,11 +13,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: WelcomeScreen(),
-      initialRoute: WelcomeScreen.routeName,
-      routes: {QuestionScreen.routeName: (context) => QuestionScreen()},
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (BuildContext context) => QuestionCubit()),
+      ],
+      child: MaterialApp(
+        title: 'Quiz',
+        initialRoute: WelcomeScreen.routeName,
+        routes: {
+          QuestionScreen.routeName: (context) => QuestionScreen(),
+          WelcomeScreen.routeName: (context) => const WelcomeScreen(),
+        },
+      ),
     );
   }
 }

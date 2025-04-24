@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/constants/colors_app.dart';
+import 'package:quiz/constants/text_app.dart';
 
 class QuestionScreen extends StatefulWidget {
   static const String routeName = '/question_screen';
@@ -18,7 +19,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
       appBar: AppBar(
         backgroundColor: ColorsApp.backgroundColor,
         title: Text(
-          'Questions',
+         TextApp.questions,
           style: TextStyle(
             color: ColorsApp.headerTextColor,
             fontWeight: FontWeight.bold,
