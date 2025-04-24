@@ -18,6 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$QuestionState {
   QuestionStatus get status => throw _privateConstructorUsedError;
+  List<QuestionModel> get questions => throw _privateConstructorUsedError;
+  int get currentIndex => throw _privateConstructorUsedError;
+  int get correctAnswers => throw _privateConstructorUsedError;
 
   /// Create a copy of QuestionState
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +36,12 @@ abstract class $QuestionStateCopyWith<$Res> {
     $Res Function(QuestionState) then,
   ) = _$QuestionStateCopyWithImpl<$Res, QuestionState>;
   @useResult
-  $Res call({QuestionStatus status});
+  $Res call({
+    QuestionStatus status,
+    List<QuestionModel> questions,
+    int currentIndex,
+    int correctAnswers,
+  });
 }
 
 /// @nodoc
@@ -50,7 +58,12 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? status = null}) {
+  $Res call({
+    Object? status = null,
+    Object? questions = null,
+    Object? currentIndex = null,
+    Object? correctAnswers = null,
+  }) {
     return _then(
       _value.copyWith(
             status:
@@ -58,6 +71,21 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
                     ? _value.status
                     : status // ignore: cast_nullable_to_non_nullable
                         as QuestionStatus,
+            questions:
+                null == questions
+                    ? _value.questions
+                    : questions // ignore: cast_nullable_to_non_nullable
+                        as List<QuestionModel>,
+            currentIndex:
+                null == currentIndex
+                    ? _value.currentIndex
+                    : currentIndex // ignore: cast_nullable_to_non_nullable
+                        as int,
+            correctAnswers:
+                null == correctAnswers
+                    ? _value.correctAnswers
+                    : correctAnswers // ignore: cast_nullable_to_non_nullable
+                        as int,
           )
           as $Val,
     );
@@ -73,7 +101,12 @@ abstract class _$$QuestionStateImplCopyWith<$Res>
   ) = __$$QuestionStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({QuestionStatus status});
+  $Res call({
+    QuestionStatus status,
+    List<QuestionModel> questions,
+    int currentIndex,
+    int correctAnswers,
+  });
 }
 
 /// @nodoc
@@ -89,7 +122,12 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? status = null}) {
+  $Res call({
+    Object? status = null,
+    Object? questions = null,
+    Object? currentIndex = null,
+    Object? correctAnswers = null,
+  }) {
     return _then(
       _$QuestionStateImpl(
         status:
@@ -97,6 +135,21 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
                     as QuestionStatus,
+        questions:
+            null == questions
+                ? _value._questions
+                : questions // ignore: cast_nullable_to_non_nullable
+                    as List<QuestionModel>,
+        currentIndex:
+            null == currentIndex
+                ? _value.currentIndex
+                : currentIndex // ignore: cast_nullable_to_non_nullable
+                    as int,
+        correctAnswers:
+            null == correctAnswers
+                ? _value.correctAnswers
+                : correctAnswers // ignore: cast_nullable_to_non_nullable
+                    as int,
       ),
     );
   }
@@ -105,15 +158,35 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$QuestionStateImpl implements _QuestionState {
-  const _$QuestionStateImpl({this.status = QuestionStatus.initial});
+  const _$QuestionStateImpl({
+    this.status = QuestionStatus.initial,
+    final List<QuestionModel> questions = const [],
+    this.currentIndex = 0,
+    this.correctAnswers = 0,
+  }) : _questions = questions;
 
   @override
   @JsonKey()
   final QuestionStatus status;
+  final List<QuestionModel> _questions;
+  @override
+  @JsonKey()
+  List<QuestionModel> get questions {
+    if (_questions is EqualUnmodifiableListView) return _questions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_questions);
+  }
+
+  @override
+  @JsonKey()
+  final int currentIndex;
+  @override
+  @JsonKey()
+  final int correctAnswers;
 
   @override
   String toString() {
-    return 'QuestionState(status: $status)';
+    return 'QuestionState(status: $status, questions: $questions, currentIndex: $currentIndex, correctAnswers: $correctAnswers)';
   }
 
   @override
@@ -121,11 +194,25 @@ class _$QuestionStateImpl implements _QuestionState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$QuestionStateImpl &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality().equals(
+              other._questions,
+              _questions,
+            ) &&
+            (identical(other.currentIndex, currentIndex) ||
+                other.currentIndex == currentIndex) &&
+            (identical(other.correctAnswers, correctAnswers) ||
+                other.correctAnswers == correctAnswers));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode => Object.hash(
+    runtimeType,
+    status,
+    const DeepCollectionEquality().hash(_questions),
+    currentIndex,
+    correctAnswers,
+  );
 
   /// Create a copy of QuestionState
   /// with the given fields replaced by the non-null parameter values.
@@ -137,11 +224,21 @@ class _$QuestionStateImpl implements _QuestionState {
 }
 
 abstract class _QuestionState implements QuestionState {
-  const factory _QuestionState({final QuestionStatus status}) =
-      _$QuestionStateImpl;
+  const factory _QuestionState({
+    final QuestionStatus status,
+    final List<QuestionModel> questions,
+    final int currentIndex,
+    final int correctAnswers,
+  }) = _$QuestionStateImpl;
 
   @override
   QuestionStatus get status;
+  @override
+  List<QuestionModel> get questions;
+  @override
+  int get currentIndex;
+  @override
+  int get correctAnswers;
 
   /// Create a copy of QuestionState
   /// with the given fields replaced by the non-null parameter values.
