@@ -10,5 +10,6 @@ class TextApp {
   static const String resultQuiz = 'Result Quiz';
   static const String resultsHistory = 'Results history:';
   static const String quizNumber = 'Quiz №';
+    static const String numberOfCorrectAnswers = 'Your number of correct answers:';
 
 }

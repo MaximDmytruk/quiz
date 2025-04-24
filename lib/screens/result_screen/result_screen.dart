@@ -33,7 +33,7 @@ class ResultScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Ваша кількість правильних відповідей: ${state.correctAnswers}",
+                    "${TextApp.numberOfCorrectAnswers} ${state.correctAnswers}",
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),

@@ -37,7 +37,7 @@ final List<QuestionModel> questionsList = [
   ),
   QuestionModel(
     text: "How genetically similar is a human to a banana?",
-    options: ["About 40-60%", "100% - We are bananas!", "84"],
+    options: ["About 40-60%", "100% - We are bananas!", "84%"],
     correctAnswer: "About 40-60%",
   ),
 ];
