@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz/constants/colors_app.dart';
 import 'package:quiz/constants/text_app.dart';
 import 'package:quiz/screens/question_screen/question_screen.dart';
-import 'package:quiz/screens/welcome_screen/widgets/custom_button.dart';
+import 'package:quiz/screens/welcome_screen/widgets/custom_text_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String routeName = '/welcome_screen';

@@ -4,6 +4,8 @@ import 'package:quiz/blocs/question_cubit/question_cubit.dart';
 import 'package:quiz/constants/colors_app.dart';
 import 'package:quiz/constants/text_app.dart';
 import 'package:quiz/models/question_model/question_model.dart';
+import 'package:quiz/screens/result_screen/result_screen.dart';
+import 'package:quiz/widgets/app_bars/custom_app_bar.dart';
 
 class QuestionScreen extends StatefulWidget {
   static const String routeName = '/question_screen';
@@ -41,28 +43,17 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorsApp.backgroundColor,
-      appBar: AppBar(
-        backgroundColor: ColorsApp.backgroundColor,
-        title: Text(
-          TextApp.questions,
-          style: TextStyle(
-            color: ColorsApp.headerTextColor,
-            fontWeight: FontWeight.bold,
-            fontSize: 24.0,
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: BlocBuilder<QuestionCubit, QuestionState>(
-        builder: (context, state) {
-          if (state.status == QuestionStatus.finished) {
-            return Placeholder();
-          }
-          final QuestionModel currentQuestion =
-              state.questions[state.currentIndex];
-          return Center(
+    return BlocBuilder<QuestionCubit, QuestionState>(
+      builder: (context, state) {
+        if (state.status == QuestionStatus.finished) {
+          return ResultScreen();
+        }
+        final QuestionModel currentQuestion =
+            state.questions[state.currentIndex];
+        return Scaffold(
+          backgroundColor: ColorsApp.backgroundColor,
+          appBar: CustomAppBar(name: TextApp.questions),
+          body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -97,28 +88,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   ),
               ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
-
-
-
-
-  //   return Scaffold(
-  //     backgroundColor: ColorsApp.backgroundColor,
-  //     appBar: AppBar(
-  //       backgroundColor: ColorsApp.backgroundColor,
-  //       title: Text(
-  //        TextApp.questions,
-  //         style: TextStyle(
-  //           color: ColorsApp.headerTextColor,
-  //           fontWeight: FontWeight.bold,
-  //         ),
-  //       ),
-  //       centerTitle: true,
-  //     ),
-  //   );
-  // }
