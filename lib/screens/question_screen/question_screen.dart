@@ -4,6 +4,7 @@ import 'package:quiz/blocs/question_cubit/question_cubit.dart';
 import 'package:quiz/constants/colors_app.dart';
 import 'package:quiz/constants/text_app.dart';
 import 'package:quiz/models/question_model/question_model.dart';
+import 'package:quiz/screens/question_screen/widgets/question_column.dart';
 import 'package:quiz/screens/result_screen/result_screen.dart';
 import 'package:quiz/widgets/app_bars/custom_app_bar.dart';
 import 'package:quiz/widgets/buttons/custom_button.dart';
@@ -66,28 +67,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   child: FadeTransition(opacity: animation, child: child),
                 );
               },
-              child: Column(
+              child: QuestionColumn(
                 key: ValueKey(currentQuestion.text),
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    currentQuestion.text,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-
-                  for (String option in currentQuestion.options)
-                    CustomButton(
-                      name: option,
-                      onPressed: () {
-                        context.read<QuestionCubit>().selectAnswer(option);
-                      },
-                    ),
-                ],
+                question: currentQuestion,
+                onOptionSelected: (selectedOption) {
+                  context.read<QuestionCubit>().selectAnswer(selectedOption);
+                },
               ),
             ),
           ),
