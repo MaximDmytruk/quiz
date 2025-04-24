@@ -39,6 +39,7 @@ class QuestionCubit extends Cubit<QuestionState> {
   void resetQuiz() {
     emit(
       state.copyWith(
+        history: [...state.history, state.correctAnswers],
         currentIndex: 0,
         correctAnswers: 0,
         status: QuestionStatus.initial,

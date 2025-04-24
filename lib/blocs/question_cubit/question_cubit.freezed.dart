@@ -21,6 +21,7 @@ mixin _$QuestionState {
   List<QuestionModel> get questions => throw _privateConstructorUsedError;
   int get currentIndex => throw _privateConstructorUsedError;
   int get correctAnswers => throw _privateConstructorUsedError;
+  List<int> get history => throw _privateConstructorUsedError;
 
   /// Create a copy of QuestionState
   /// with the given fields replaced by the non-null parameter values.
@@ -41,6 +42,7 @@ abstract class $QuestionStateCopyWith<$Res> {
     List<QuestionModel> questions,
     int currentIndex,
     int correctAnswers,
+    List<int> history,
   });
 }
 
@@ -63,6 +65,7 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
     Object? questions = null,
     Object? currentIndex = null,
     Object? correctAnswers = null,
+    Object? history = null,
   }) {
     return _then(
       _value.copyWith(
@@ -86,6 +89,11 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
                     ? _value.correctAnswers
                     : correctAnswers // ignore: cast_nullable_to_non_nullable
                         as int,
+            history:
+                null == history
+                    ? _value.history
+                    : history // ignore: cast_nullable_to_non_nullable
+                        as List<int>,
           )
           as $Val,
     );
@@ -106,6 +114,7 @@ abstract class _$$QuestionStateImplCopyWith<$Res>
     List<QuestionModel> questions,
     int currentIndex,
     int correctAnswers,
+    List<int> history,
   });
 }
 
@@ -127,6 +136,7 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
     Object? questions = null,
     Object? currentIndex = null,
     Object? correctAnswers = null,
+    Object? history = null,
   }) {
     return _then(
       _$QuestionStateImpl(
@@ -150,6 +160,11 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
                 ? _value.correctAnswers
                 : correctAnswers // ignore: cast_nullable_to_non_nullable
                     as int,
+        history:
+            null == history
+                ? _value._history
+                : history // ignore: cast_nullable_to_non_nullable
+                    as List<int>,
       ),
     );
   }
@@ -163,7 +178,9 @@ class _$QuestionStateImpl implements _QuestionState {
     final List<QuestionModel> questions = const [],
     this.currentIndex = 0,
     this.correctAnswers = 0,
-  }) : _questions = questions;
+    final List<int> history = const [],
+  }) : _questions = questions,
+       _history = history;
 
   @override
   @JsonKey()
@@ -183,10 +200,18 @@ class _$QuestionStateImpl implements _QuestionState {
   @override
   @JsonKey()
   final int correctAnswers;
+  final List<int> _history;
+  @override
+  @JsonKey()
+  List<int> get history {
+    if (_history is EqualUnmodifiableListView) return _history;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_history);
+  }
 
   @override
   String toString() {
-    return 'QuestionState(status: $status, questions: $questions, currentIndex: $currentIndex, correctAnswers: $correctAnswers)';
+    return 'QuestionState(status: $status, questions: $questions, currentIndex: $currentIndex, correctAnswers: $correctAnswers, history: $history)';
   }
 
   @override
@@ -202,7 +227,8 @@ class _$QuestionStateImpl implements _QuestionState {
             (identical(other.currentIndex, currentIndex) ||
                 other.currentIndex == currentIndex) &&
             (identical(other.correctAnswers, correctAnswers) ||
-                other.correctAnswers == correctAnswers));
+                other.correctAnswers == correctAnswers) &&
+            const DeepCollectionEquality().equals(other._history, _history));
   }
 
   @override
@@ -212,6 +238,7 @@ class _$QuestionStateImpl implements _QuestionState {
     const DeepCollectionEquality().hash(_questions),
     currentIndex,
     correctAnswers,
+    const DeepCollectionEquality().hash(_history),
   );
 
   /// Create a copy of QuestionState
@@ -229,6 +256,7 @@ abstract class _QuestionState implements QuestionState {
     final List<QuestionModel> questions,
     final int currentIndex,
     final int correctAnswers,
+    final List<int> history,
   }) = _$QuestionStateImpl;
 
   @override
@@ -239,6 +267,8 @@ abstract class _QuestionState implements QuestionState {
   int get currentIndex;
   @override
   int get correctAnswers;
+  @override
+  List<int> get history;
 
   /// Create a copy of QuestionState
   /// with the given fields replaced by the non-null parameter values.

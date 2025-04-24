@@ -9,5 +9,6 @@ class QuestionState with _$QuestionState {
     @Default([]) List<QuestionModel> questions,
     @Default(0) int currentIndex,
     @Default(0) int correctAnswers,
+    @Default([]) List<int> history,
   }) = _QuestionState;
 }

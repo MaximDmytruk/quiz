@@ -22,10 +22,14 @@ class ResultScreen extends StatelessWidget {
       body: BlocBuilder<QuestionCubit, QuestionState>(
         builder: (context, state) {
           return Padding(
-            padding: EdgeInsets.symmetric(vertical: 200.0, horizontal: 30.0),
+            padding: EdgeInsets.only(
+              top: 200.0,
+              left: 30.0,
+              right: 30,
+              bottom: 10,
+            ),
             child: Center(
               child: Column(
-                spacing: 80,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -33,6 +37,7 @@ class ResultScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
+                  SizedBox(height: 80),
 
                   CustomButton(
                     name: TextApp.tryAgain,
@@ -40,6 +45,27 @@ class ResultScreen extends StatelessWidget {
                       tryAgainAction(context);
                     },
                   ),
+                  SizedBox(height: 60.0),
+                  if (state.history.isNotEmpty) ...[
+                    Text(
+                      TextApp.resultsHistory,
+                      style: TextStyle(fontSize: 20),
+                    ),
+
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: state.history.length,
+                        itemBuilder: (context, index) {
+                          final int result = state.history[index];
+                          return Center(
+                            child: Text(
+                              '${TextApp.quizNumber} ${index + 1} - $result',
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),

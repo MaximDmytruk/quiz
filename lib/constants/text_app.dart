@@ -8,4 +8,7 @@ class TextApp {
   static const String questions = 'Questions Quiz';
   static const String tryAgain = 'Try Again';
   static const String resultQuiz = 'Result Quiz';
+  static const String resultsHistory = 'Results history:';
+  static const String quizNumber = 'Quiz №';
+
 }
